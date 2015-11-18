@@ -1,0 +1,23 @@
+{
+  "name": "coworker-cli",
+  "version": "1.0.0",
+  "description": "Template path parser for 58.com velocity templates, which can read your target template and output the main template path.",
+  "main": "./bin",
+  "bin": {
+    "coworker": "./bin/cocli"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Velocity",
+    "cli",
+    "template"
+  ],
+  "author": "wangyujing",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0"
+  }
+}

@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+
+var cmder = require('commander');
+var wf = require('../logic/walkFolders');
+var go = require('../logic/globalObject');
+var getmain = require('../logic/anaMain');
+var msg = require('../messages');
+var chalk = require('chalk');
+var path = require('path');
+var fs = require('fs');
+var po = require('../logic/processOutput');
+
+cmder
+    .version('1.0.0')
+    .usage('[options] <file>')
+    .option('-f, --full', 'Whether output full path of the template[s]')
+    .option('-t, --template [template]', 'Read the given template name and output the path of main template path[s]')
+    .parse(process.argv);
+
+var full = false;
+
+if (cmder.full) {
+    full = true;
+}
+
+if (cmder.template) {
+    var cwd = process.cwd();
+    var filename = cmder.template.replace(/^\s+/, '').split(' ')[0];
+    var filepath = path.join(cwd, filename);
+
+    if (filename && fs.existsSync(filepath)) {
+        var mainpath = cwd.split('views')[0];
+        wf(mainpath + 'views');
+        var r = getmain(go, filepath);
+        if (r.length > 0) {
+            if (!full) {
+                r = r.map(function (_r) {
+                    return _r.split(mainpath)[1];
+                });
+            }
+            po(cmder.template, r, full);
+        } else {
+            console.log(chalk.yellow(msg.TEMP_DO_NOT_FOUND));
+        }
+    } else {
+        console.log(chalk.red(msg.NEED_TEMP_NAME));
+    }
+
+} else {
+    console.log(chalk.red(msg.NEED_TEMP_NAME));
+}
