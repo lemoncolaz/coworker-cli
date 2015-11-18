@@ -1,5 +1,5 @@
 # Coworker CLI
-
+ONLY used for m.58.com template edit.
 
 ## Dependencies
 
