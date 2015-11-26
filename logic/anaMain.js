@@ -19,3 +19,4 @@ module.exports = function (g, path) {
     walk(g, path, result);
     return result;
 };
+

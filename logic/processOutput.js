@@ -6,7 +6,7 @@ var chalk = require('chalk');
 module.exports = function (input, resultArr, full) {
     var ostart = 'Input template: ';
     if (!full) {
-        console.log('┌────────────────────────────────────', chalk.red.bold('COWORKER RESULTS'), '─────────────────────────────────┐');
+        console.log('────────', chalk.red.bold('COWORKER RESULTS'), '────────');
     }
 
     console.log('', chalk.blue.bold(ostart, chalk.red(input)));
@@ -16,6 +16,6 @@ module.exports = function (input, resultArr, full) {
     });
 
     if (!full) {
-        console.log('└───────────────────────────────────────────────────────────────────────────────────────┘');
+        console.log('========================================');
     }
 };
